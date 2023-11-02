@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.34031.109
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OlympicGames", "OlympicGames\OlympicGames.csproj", "{A06DE8C3-4177-47C9-806D-30AD6EFFBA3E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OlympicGames.Data", "OlympicGames.Data\OlympicGames.Data.csproj", "{5D056FD9-AF21-4832-B537-E4F2F398CEA8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A06DE8C3-4177-47C9-806D-30AD6EFFBA3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A06DE8C3-4177-47C9-806D-30AD6EFFBA3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A06DE8C3-4177-47C9-806D-30AD6EFFBA3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D056FD9-AF21-4832-B537-E4F2F398CEA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D056FD9-AF21-4832-B537-E4F2F398CEA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D056FD9-AF21-4832-B537-E4F2F398CEA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D056FD9-AF21-4832-B537-E4F2F398CEA8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,5 +1,6 @@
-﻿using OlympicGames.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using OlympicGames.Data.LogicBussiness;
+using OlympicGames.Data.Models;
 
 namespace OlympicGames.Controllers
 {
@@ -7,20 +8,46 @@ namespace OlympicGames.Controllers
     [Route("api/[controller]")]
     public class ManageResultController : ControllerBase
     {
+        private readonly LB_ManageResult<ResultHalterofilia> LB_ManageResult;
+
+        public ManageResultController(DbContextOlympicGames DbContext)
+        {
+            this.LB_ManageResult = new(DbContext);
+        }
+
+        [HttpGet]
+        [Route("[action]")]
+        public IActionResult GetResults()
+        {
+            ResultBase<ResultHalterofilia> result = LB_ManageResult.GetOrderedData();
+
+            if (!result.StatusBase.Error)
+                return Ok(result.ResultList);
+            else
+                return BadRequest(result.StatusBase);
+        }
+
         [HttpPost]
         [Route("[action]")]
-        public IActionResult GetResults([FromBody] List<ResultHalterofilia> results)
+        public IActionResult InsertResults([FromBody] ResultHalterofilia entity)
         {
-            results = results.GroupBy(r => new { r.Pais, r.Nombre })
-            .Select(group => new ResultHalterofilia
-            {
-                Pais = group.Key.Pais,
-                Nombre = group.Key.Nombre,
-                Arranque = group.Max(r => r.Arranque),
-                Envion = group.Max(r => r.Envion),
-            }).OrderByDescending(r => r.TotalPeso).ToList();
+            ResultBase<ResultHalterofilia> result = LB_ManageResult.InsertData(entity);
+            if (!result.StatusBase.Error)
+                return Ok(result.StatusBase);
+            else
+                return BadRequest(result.StatusBase);
+        }
 
-            return Ok(results);
+        [HttpPost]
+        [Route("[action]")]
+        public IActionResult InsertMultipleResults([FromBody] List<ResultHalterofilia> entity)
+        {
+            ResultBase<ResultHalterofilia> result = LB_ManageResult.InsertMultipleData(entity);
+            if (!result.StatusBase.Error)
+                return Ok(result.StatusBase);
+            else
+                return BadRequest(result.StatusBase);
+
         }
     }
 }
